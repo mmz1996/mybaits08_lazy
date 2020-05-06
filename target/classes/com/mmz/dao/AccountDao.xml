@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mmz.dao.AccountDao">
+
+    <resultMap id="accountUserMap" type="com.mmz.pojo.Account">
+        <id property="id" column="id"></id>
+        <result property="uid" column="uid"></result>
+        <result property="money" column="money"></result>
+        <association property="user" column="uid" javaType="com.mmz.pojo.User" select="com.mmz.dao.UserDao.findById">
+
+        </association>
+    </resultMap>
+
+    <select id="findAll" resultMap="accountUserMap">
+       select * from account
+    </select>
+
+    <select id="findAccountById" resultType="com.mmz.pojo.Account">
+        select * from account where id = #{uid}
+    </select>
+
+
+
+
+
+
+</mapper>
